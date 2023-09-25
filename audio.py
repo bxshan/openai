@@ -2,17 +2,17 @@ import openai
 from docx import Document
 from pydub import AudioSegment
 
+openai.api_key_path = "/Users/box/.environment"
+
 #                   0           1          2                       3
 option = int(input("transcribe, translate, transcribe + translate, all"))
 
 def transcribe_audio(audio_file_path):
-    return "===transcription==="
     with open(audio_file_path, 'rb') as audio_file:
         transcription = openai.Audio.transcribe("whisper-1", audio_file)
     return transcription['text']
 
 def translation_chinese_extraction(transcription):
-    return "===translation==="
     response = openai.ChatCompletion.create(
         model="gpt-4",
         temperature=0,
